@@ -1,6 +1,11 @@
-function! wikimatic#OpenWikiIndex()
+function! wikimatic#OpenWiki()
   let path = g:wikimatic_path
   execute "e ".path."/index.md"
+endfunction
+
+function! wikimatic#OpenWikiTab()
+  let path = g:wikimatic_path
+  execute "tabe ".path."/index.md"
 endfunction
 
 function! wikimatic#IsMdLink()
