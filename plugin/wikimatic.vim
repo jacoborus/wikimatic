@@ -30,7 +30,6 @@ augroup end
 function! MapLinks ()
   if expand('%:p') =~# expand(g:wikimatic_path)
     map <buffer> <enter> :WikiLink<cr>
-    map <buffer> gf :WikiLink<cr>
     map <buffer> <tab> :WikiNextLink<cr>
     map <buffer> <S-tab> :WikiPrevLink<cr>
     vnoremap <buffer> <enter> :WikiLinkVisual()<cr>
