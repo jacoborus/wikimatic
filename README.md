@@ -20,6 +20,8 @@ Inside markdown files in the Wikimatic folder:
 - `gf` on a link to open or create that file
 - `<enter>` on a link to open or create that file
 - `<enter>` on a word or selection to create a link from it
+- `<tab>` to move the cursor to the next link
+- `<S-tab>` to move the cursor to the previous link
 
 ## Options
 
