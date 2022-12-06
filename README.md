@@ -13,41 +13,24 @@ Vim.
 
 Inside markdown files in the Wik folder:
 
-- `gf` on link to open or create that file
-- `<enter>` on link to open or create that file
-- `<enter>` on a **W**ord or selection to create a link from it
+- `gf` on a link to open or create that file
+- `<enter>` on a link to open or create that file
+- `<enter>` on a word or selection to create a link from it
 
 ## Options
 
-Wiki:
-
-- wikPath: path of the main wiki folder
-- wikPath4: path of the wiki 4 folder
-- wikSpaces: string - indicates the character to replace the spaces
-
-Diary:
-
-- wikDiaryPath: path of the main wiki folder
-- wikDiaryYear: boolean - create folders for years inside diary
+```
+let g:wikimatic_path = '~/wiki'
+```
 
 ## Commands
 
-Wiki:
-
-- Wik: when in a wiki, open its index, otherwise, open default wiki
-- Wik 0: open default wiki index
-- Wik 6: open wiki 6 index
-- WikGo: navigate or create the link under cursor
-- WikCreateLink: create a link from word or selection
-- WikGoOrCreate: navigate to link or create the page if it doesn't exitst
-
-Diary:
-
-- WikDiary: open diary folder
-- WikYear: open year folder in diary (only when wikDiaryYear is on)
-- WikToday: open/create todays page in diary
-- WikPrevLink: move cursor to previous link
-- WikNextLink: move cursor to next link
-- WikPrevDay: navigate to previous diary page
-- WikNextDay: navigate to next diary page
-- WikDay YYYY-MM-DD: open or create the page of that day
+- Wiki: open the wiki page (index.md)
+- WikiGo: navigate to markdown link
+- WikiLink:
+  - on a link: WikiGo
+  - on a word: WikiLinkCursor
+- WikiLinkVisual: create a link from visual selection
+- WikiLinkCursor: create a link from the word under cursor
+- WikiNextLink: move the cursor to the next link
+- WikiPrevLink: move the cursor to the previous link
