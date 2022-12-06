@@ -9,9 +9,13 @@ Vim.
 
 ## Features
 
-- Shortcuts to open the wiki, diary, and navigate between links and diary pages
+- open the wiki
+- navigate between links
+- create links and files
 
-Inside markdown files in the Wik folder:
+# How
+
+Inside markdown files in the Wikimatic folder:
 
 - `gf` on a link to open or create that file
 - `<enter>` on a link to open or create that file
