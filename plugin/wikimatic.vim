@@ -17,6 +17,7 @@ let g:loaded_wikimatic = 1
 command! -nargs=0 WikiLink call wikimatic#IsMdLink()
 command! -nargs=0 WikiNextLink call wikimatic#JumpToNextMarkdownLink()
 command! -nargs=0 WikiPrevLink call wikimatic#JumpToPreviousMarkdownLink()
+command! -nargs=0 CreateMarkdownLink call CreateMarkdownLink()
 
 augroup wikigroup
   autocmd!
@@ -29,5 +30,18 @@ function! MapLinks ()
     map <buffer> gf :WikiLink<cr>
     map <buffer> <tab> :WikiNextLink<cr>
     map <buffer> <S-tab> :WikiPrevLink<cr>
+    vnoremap <buffer> <enter> :call CreateMarkdownLink()<cr>
   endif
+endfunction
+
+function! CreateMarkdownLink()
+  " Replace the selected text with the Markdown link
+  let selection = getline('v')
+  let result = substitute(selection, '\v^', '[&](#)', 'g')
+  echo result
+  call setline('v', result)
+  " Move the cursor to the end of the selected text
+  let cursor_col = col('.')
+  let link_end = cursor_col + len(result)
+  call cursor(line('.'), link_end)
 endfunction
