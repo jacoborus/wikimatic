@@ -8,8 +8,7 @@ function! wikimatic#IsMdLink()
   let cursor_col = col('.')
   let link_regex = '\[.*\]\(.*\)'
   let line_length = strlen(line)
-  echo 'is link!'
-  if cursor_col < line_length
+  if cursor_col <= line_length
     let possible_link = line[0:line_length]
     let link_start = match(possible_link, link_regex)
     if link_start >= 0
@@ -69,7 +68,7 @@ function! wikimatic#NavigateToMarkdownLink()
   let cursor_col = col('.')
   let link_regex = '\[.*\]\((.*)\)'
   let url_regex = '\v^((https?|ftp|file)://)|(www\.).+'
-  if cursor_col < strlen(line)
+  if cursor_col <= strlen(line)
     let possible_link = line[0:strlen(line)]
     let link_start = match(possible_link, link_regex)
     if link_start >= 0
@@ -89,4 +88,3 @@ function! wikimatic#NavigateToMarkdownLink()
     endif
   endif
 endfunction
-

@@ -32,6 +32,6 @@ function! MapLinks ()
     map <buffer> <enter> :WikiLink<cr>
     map <buffer> <tab> :WikiNextLink<cr>
     map <buffer> <S-tab> :WikiPrevLink<cr>
-    vnoremap <buffer> <enter> :WikiLinkVisual<cr>
+    vnoremap <buffer> <enter> :WikiLinkVisual()<cr>
   endif
 endfunction
