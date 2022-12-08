@@ -8,7 +8,7 @@ function! wikimatic#OpenWikiTab()
   execute "tabe ".path."/index.md"
 endfunction
 
-function! wikimatic#IsMdLink()
+function! wikimatic#GoOrCreate()
   let line = getline('.')
   let cursor_col = col('.')
   let link_regex = '\[.*\]\(.*\)'
@@ -38,10 +38,15 @@ endfunction
 function! wikimatic#CreateLinkFromVisual()
   try
     let a_save = @a
-    normal! gv"ad
+    execute 'normal! gv"as'
     let saved_sel = @a
     let sel_text = substitute(saved_sel, ' ', '_', 'g')
-    execute "normal a[".saved_sel."](".sel_text.".md)"
+    let link_text = "[".saved_sel."](".sel_text.".md)"
+    if col('.') == 1
+      execute "normal i".link_text
+    else
+      execute "normal a".link_text
+    endif
   finally
     let @a = a_save
   endtry
@@ -92,4 +97,17 @@ function! wikimatic#NavigateToMarkdownLink()
       endif
     endif
   endif
+endfunction
+
+function! s:get_visual_selection()
+    " Why is this not a built-in Vim script function?!
+    let [line_start, column_start] = getpos("'<")[1:2]
+    let [line_end, column_end] = getpos("'>")[1:2]
+    let lines = getline(line_start, line_end)
+    if len(lines) == 0
+        return ''
+    endif
+    let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
+    let lines[0] = lines[0][column_start - 1:]
+    return join(lines, "\n")
 endfunction
