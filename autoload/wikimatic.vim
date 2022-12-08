@@ -30,7 +30,7 @@ endfunction
 
 function! wikimatic#CreateLinkFromCursor()
   let word = expand("<cword>")
-  let link = printf("[%s](%s.md)", word, word)
+  let link = printf("[%s](%s.md)", word, tolower(word))
   normal! diw
   execute "normal! a" . link
 endfunction
@@ -41,7 +41,7 @@ function! wikimatic#CreateLinkFromVisual()
     execute 'normal! gv"as'
     let saved_sel = @a
     let sel_text = substitute(saved_sel, ' ', '_', 'g')
-    let link_text = "[".saved_sel."](".sel_text.".md)"
+    let link_text = "[".saved_sel."](".tolower(sel_text).".md)"
     if col('.') == 1
       execute "normal i".link_text
     else
